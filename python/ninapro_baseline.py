@@ -54,6 +54,7 @@ def evaluate(x, lab, rep, causal):
 
 
 if __name__ == "__main__":
+    cm_total = 0
     for path in sys.argv[1:]:   # e.g. python ninapro_baseline.py ../data/raw/ninapro/S1_E1_A1.mat
         x, lab, rep = load_subject(path)
         for name, cols in [("12 canali", slice(None)), ("4 canali", CHANNELS_4)]:
@@ -61,3 +62,10 @@ if __name__ == "__main__":
                 wa, ta, tt, cm = evaluate(x[:, cols], lab, rep, causal)
                 kind = "causale" if causal else "fase zero"
                 print(f"{path} | {name} | {kind} | finestra {wa:.3f} | comando {ta:.3f} | tempo {tt:.2f} s")
+                if name == "4 canali" and causal:
+                    cm_total = cm_total + cm
+    print("Matrice di confusione, 4 canali, causale, somma su tutti i soggetti [%]")
+    print("righe = movimento vero, colonne = movimento previsto, ordine: 0, 5, 6, 13")
+    print(np.round(100 * cm_total / cm_total.sum(axis=1, keepdims=True), 1))
+    cmp = cm_total / cm_total.sum(axis=1, keepdims=True)
+    print(f"Accuratezza bilanciata (media della diagonale): {np.mean(np.diag(cmp)):.3f}")
