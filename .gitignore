@@ -5,3 +5,4 @@ models/
 *.mat
 CLAUDE.md
 *.pdf
+data/sim/

@@ -341,4 +341,10 @@ Esempio con una mini-finestra di 5 campioni: `[2, -1, 3, -2, 1]`.
 
 - Passo 2.5: es4_servo, link Wokwi: <https://wokwi.com/projects/481569698791856129>. Il servo segue il potenziometro da 0 a 180 gradi (map riscala 0-1023 in 0-180).
 
-- Passo 2.6: es5_protocollo, link Wokwi: <https://wokwi.com/projects/481570584727685121>. Watchdog 2000 ms: C,0.5 porta da 20 a 139,88 in 2 s (60 gradi/s), C,1 si ferma a 150, O torna a 20. Watchdog 200 ms: un comando muove di circa <tuo numero> gradi. Corretti i commenti delle costanti, che nel PDF erano spostati.
+- Passo 2.6: es5_protocollo, link Wokwi: <https://wokwi.com/projects/481570584727685121>. Watchdog 2000 ms: C,0.5 porta da 20 a 139,88 in 2 s (60 gradi/s), C,1 si ferma a 150, O torna a 20. Watchdog 200 ms: un comando muove di circa 12 gradi. Corretti i commenti delle costanti, che nel PDF erano spostati.
+
+Passo 2.7: python/serial_reader.py (lettore dei pacchetti da 18 byte). Controllo: stampa 18 <HHHHHHHHH. Codice del PDF verificato con 100.000 pacchetti simulati e un byte perso ogni mille: si risincronizza da solo, conto dei persi corretto.
+
+- Passo 2.7: python/serial_reader.py (lettore dei pacchetti da 18 byte). Controllo: stampa 18 <HHHHHHHHH. Codice del PDF verificato con 100.000 pacchetti simulati e un byte perso ogni mille: si risincronizza da solo, conto dei persi corretto.
+- Passo 2.8: python/ninapro_to_npz.py, S1 -> data/sim/S1_train.npz e S1_test.npz, 163.351 campioni (163 s), ripetizioni valutate [1-4] e [5, 6]. Corretto .gitignore: il PDF dice che data/sim e' gia' escluso, invece mancava. Nota: qui il riposo e' solo quello dopo i miei 3 movimenti (30-68% secondo il soggetto, non 91%), quindi l'accuratezza per finestra non e' confrontabile con la fase 1.
+- Trovato results/baseline.md vuoto nel commit della fase 1: aggiunto ora con la tabella.
