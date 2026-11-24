@@ -331,3 +331,8 @@ Esempio con una mini-finestra di 5 campioni: `[2, -1, 3, -2, 1]`.
 - `git add file...` sceglie quali file mettere nella prossima "fotografia" del progetto.
 - `git commit -m "messaggio"` scatta la fotografia, con un messaggio che dice cosa e' cambiato.
 - Si puo' sempre tornare a una fotografia precedente: per questo conviene fare un commit a ogni passo finito. Oggi: e12442e (Passi 1.9-1.10) e 698335a (Passo 1.11).
+
+
+- Passo 2.2: es1_ciao, link Wokwi: [<https://wokwi.com/projects/481567906741440513>]. millis: 1000, 2001, 3001 (circa 1000 ms a giro, +1 ogni tanto per il tempo del resto del codice).
+
+- Passo 2.3: es2_potenziometro, link Wokwi: <https://wokwi.com/projects/481568638824924161>. analogRead va da 0 a 1023 (10 bit sull'UNO R3)
