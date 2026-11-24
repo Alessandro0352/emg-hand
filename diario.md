@@ -348,3 +348,14 @@ Passo 2.7: python/serial_reader.py (lettore dei pacchetti da 18 byte). Controllo
 - Passo 2.7: python/serial_reader.py (lettore dei pacchetti da 18 byte). Controllo: stampa 18 <HHHHHHHHH. Codice del PDF verificato con 100.000 pacchetti simulati e un byte perso ogni mille: si risincronizza da solo, conto dei persi corretto.
 - Passo 2.8: python/ninapro_to_npz.py, S1 -> data/sim/S1_train.npz e S1_test.npz, 163.351 campioni (163 s), ripetizioni valutate [1-4] e [5, 6]. Corretto .gitignore: il PDF dice che data/sim e' gia' escluso, invece mancava. Nota: qui il riposo e' solo quello dopo i miei 3 movimenti (30-68% secondo il soggetto, non 91%), quindi l'accuratezza per finestra non e' confrontabile con la fase 1.
 - Trovato results/baseline.md vuoto nel commit della fase 1: aggiunto ora con la tabella.
+
+- Passo 2.9: python/train_model.py -> models/sim.joblib. Accuratezza sul training 0,943 (ottimistica). Deadzone 0,15: alzata dal canale 7, che a riposo e' gia' al 33% del suo livello "forte".
+- Passo 2.10: python/decoder.py. Controllo: 17 decisioni nel primo secondo, classe 0, velocita' 0. Limite: la velocita' e' la media dei 4 canali, quindi "apri" (debole) e' lento: velocita' mediana 0,16 contro 0,32 di chiudi, e nel 17% delle finestre resta 0.
+- Passo 2.11: python/replay_eval.py su S1_test. Blocchi irregolari = blocco unico (100%). Aggiunte accuratezza per classe e tempi separati movimenti/riposo.
+  | | corretto | bilanciata | riposo | chiudi | apri | polso | inizio mov. | ritorno riposo |
+  | alpha 0,1 | 73,9 | 62,0 | 81,2 | 52,6 | 63,9 | 50,4 | 1064 ms | 1136 ms |
+  | alpha 0,3 | 81,5 | 72,9 | 87,3 | 73,1 | 77,3 | 53,8 | 582 ms | 761 ms |
+  | alpha 0,5 | 82,2 | 73,4 | 88,3 | 75,6 | 76,5 | 53,0 | 490 ms | 711 ms |
+  | thr 0,9 | 78,4 | 68,6 | 84,8 | 65,4 | 72,3 | 52,1 | 839 ms | 936 ms |
+  Lento = in ritardo = sbagliato: alpha basso e threshold alto peggiorano tutto. alpha 0,5 un po' meglio, ma 1 soggetto e scelto sul test: tengo 0,3, da riverificare nella fase 5. Polso fermo a circa 53% (classificatore, non accumulo).
+  Il tempo di reazione vero (circa 0,6 s) e' molto piu' lungo del "tempo" della fase 1 (0,16 s per S1), che partiva da barre azzerate e dalla prima finestra pura. Minimo teorico: finestra piena (200 ms) + 4 decisioni per superare 0,7 partendo dal riposo saturo (150 ms) = circa 350 ms. L'obiettivo di 100-125 ms della Figura 5 non e' raggiungibile con questo schema
