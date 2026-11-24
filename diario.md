@@ -28,7 +28,7 @@ Numeri: S1 = 1.808.331 campioni x 12 canali (circa 15 min a 2 kHz), movimenti 0-
 
 Prossimo passo: leggere i Passi 1.4-1.8 del piano (filtri, finestre, feature, LDA, validazione, accumulo), poi scrivere python/emg.py (Passo 1.9).
 
-## 2026-11-21 (? h)
+## 2026-11-21 (1 h)
 Fatto:
 - Letti i Passi 1.4-1.8 del piano. Sono solo teoria (filtri, finestre e feature, LDA, validazione, accumulo dell'evidenza): non si scrive codice.
 - Passo 1.9: scritto python/emg.py, il modulo comune con filtri, finestre, feature e accumulo. Controllo: `python -c "import emg; print(emg.design_filters().shape)"` stampa (5, 6).
