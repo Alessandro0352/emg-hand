@@ -336,3 +336,7 @@ Esempio con una mini-finestra di 5 campioni: `[2, -1, 3, -2, 1]`.
 - Passo 2.2: es1_ciao, link Wokwi: [<https://wokwi.com/projects/481567906741440513>]. millis: 1000, 2001, 3001 (circa 1000 ms a giro, +1 ogni tanto per il tempo del resto del codice).
 
 - Passo 2.3: es2_potenziometro, link Wokwi: <https://wokwi.com/projects/481568638824924161>. analogRead va da 0 a 1023 (10 bit sull'UNO R3)
+
+- Passo 2.4: es3_micros, link Wokwi: <https://wokwi.com/projects/481569181759866881>. Con delay(1): 900, 898 campioni al secondo (manca il 10%). Con micros(): 1000 (1001 solo il primo). Il prossimo istante si calcola dal precedente, non da adesso, cosi' i ritardi non si accumulano.
+
+- Passo 2.5: es4_servo, link Wokwi: <https://wokwi.com/projects/481569698791856129>. Il servo segue il potenziometro da 0 a 180 gradi (map riscala 0-1023 in 0-180).
