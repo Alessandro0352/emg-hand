@@ -340,3 +340,5 @@ Esempio con una mini-finestra di 5 campioni: `[2, -1, 3, -2, 1]`.
 - Passo 2.4: es3_micros, link Wokwi: <https://wokwi.com/projects/481569181759866881>. Con delay(1): 900, 898 campioni al secondo (manca il 10%). Con micros(): 1000 (1001 solo il primo). Il prossimo istante si calcola dal precedente, non da adesso, cosi' i ritardi non si accumulano.
 
 - Passo 2.5: es4_servo, link Wokwi: <https://wokwi.com/projects/481569698791856129>. Il servo segue il potenziometro da 0 a 180 gradi (map riscala 0-1023 in 0-180).
+
+- Passo 2.6: es5_protocollo, link Wokwi: <https://wokwi.com/projects/481570584727685121>. Watchdog 2000 ms: C,0.5 porta da 20 a 139,88 in 2 s (60 gradi/s), C,1 si ferma a 150, O torna a 20. Watchdog 200 ms: un comando muove di circa <tuo numero> gradi. Corretti i commenti delle costanti, che nel PDF erano spostati.
